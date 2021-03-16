@@ -15,9 +15,9 @@ php artisan serve # starts a php server (access the website on http://127.0.0.1:
 ## Usage (console)
 
 ```bash
-php artisan product:create {name} {--description=} {--price==} {--img_path=} #creates a product from the console (the path is relative the app root directory)
+php artisan product:create {name} {--description=} {--price==} {--img_path=} {--category=?} #creates a product from the console (the image path is relative the app root directory)
 product:delete {id} # removes a product from the console. You must provide the product ID
-php artisan category:create {name} {--parent=0} # creates a category with an optional parent category
+php artisan category:create {name} {--parent=?} # creates a category with an optional parent category
 php artisan category:delete {id} # deletes a category by ID
 
 ```

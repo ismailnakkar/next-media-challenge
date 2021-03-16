@@ -15,8 +15,8 @@ class CategoryManager implements CategoryManagerContract {
         $this->category = $category;
     }
 
-    public function create($name, int $parent) {
-        return $this->category->create(array_merge(['name' => $name], $parent ? ['parent_category' => $parent] : []))->id;
+    public function create($name, $parent) {
+        return $this->category->create(['name' => $name, 'parent_category' => $parent])->id;
     }
 
     public function delete($id): void {

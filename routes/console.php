@@ -26,9 +26,9 @@ use Illuminate\Support\Facades\Artisan;
 
 
 //image path relative to the root directory of the application
-Artisan::command('product:create {name} {--description=} {--price==} {--img_path=}', function($name, $description, Float $price, $img_path) {
+Artisan::command('product:create {name} {--description=} {--price==} {--img_path=} {--category=}', function($name, $description, Float $price, $img_path, $category) {
     try {
-        $id = App::make(ProductManagerContract::class)->createFromConsole($name, $description, $price, $img_path);
+        $id = App::make(ProductManagerContract::class)->createFromConsole($name, $description, $price, $img_path, $category);
         $this->info("Your product has been added with the id: {$id}!");
         return 0;
     } catch (Exception $e) {
@@ -58,7 +58,7 @@ Artisan::command('product:delete {id}', function($id){
 });
 
 
-Artisan::command('category:create {name} {--parent=0}', function($name, int $parent) {
+Artisan::command('category:create {name} {--parent=}', function($name, $parent) {
     try {
         $id = App::make(CategoryManagerContract::class)->create($name, $parent);
         $this->info("A category has been added with the id: {$id}");

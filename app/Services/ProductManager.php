@@ -20,14 +20,14 @@ class ProductManager implements ProductManagerContract {
     }
 
 
-    public function createFromConsole($name, $description, Float $price, $img_path) {
+    public function createFromConsole($name, $description, Float $price, $img_path, $category) {
         $file = new File(base_path($img_path));
         if(!strstr($file->getMimeType(), 'image')) {
             throw new InvalidArgumentException("The file must be an image");
         }
         $image = Image::make($file)->encode($file->getExtension());
-        return DB::transaction(function() use ($name, $description, $price, $image, $file) {
-            $product = $this->product->create(['name' => $name, 'description' => $description, 'price' => $price]);
+        return DB::transaction(function() use ($name, $description, $price, $image, $file, $category) {
+            $product = $this->product->create(['name' => $name, 'description' => $description, 'price' => $price, 'category_id' => $category]);
             $path = "images/{$product->id}.{$file->getExtension()}";
             Storage::put($path, $image);
             $product->update(['img_path' => $path]);
