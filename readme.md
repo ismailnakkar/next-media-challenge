@@ -17,7 +17,7 @@ php artisan serve # starts a php server (access the website on http://127.0.0.1:
 ```bash
 php artisan product:create {name} {--description=} {--price==} {--img_path=} {--categories=?} #creates a product from the console (the image path is relative the app root directory)
 # categories must be split by a comma (example: 1,2,3)
-product:delete {id} # removes a product from the console. You must provide the product ID
+php artisan product:delete {id} # removes a product from the console. You must provide the product ID
 php artisan category:create {name} {--parent=?} # creates a category with an optional parent category
 php artisan category:delete {id} # deletes a category by ID
 
