@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contracts\CategoryManagerContract;
 use App\Contracts\ProductManagerContract;
 use App\Http\Requests\CreateProductRequest;
-use App\Models\Category;
 use Illuminate\Routing\Controller;
 
 class ProductController extends Controller
