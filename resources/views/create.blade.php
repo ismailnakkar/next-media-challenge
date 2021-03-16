@@ -22,9 +22,8 @@
                         <input class="form-control" type="file" name="image">
                     </div>
                     <div class="form-group">
-                        <label for="category">Category (Optional)</label>
-                        <select name="category" class="form-control">
-                            <option value="" selected>Select a category</option>
+                        <label for="category">Categories (Optional)</label>
+                        <select multiple name="categories[]" class="form-control">
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach

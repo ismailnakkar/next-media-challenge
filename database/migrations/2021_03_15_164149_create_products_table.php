@@ -20,7 +20,6 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->float('price');
             $table->string('img_path')->nullable();
-            $table->foreignId('category_id')->nullable()->constrained();
         });
     }
 

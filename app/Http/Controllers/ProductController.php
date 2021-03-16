@@ -27,12 +27,7 @@ class ProductController extends Controller
     }
 
     public function store(CreateProductRequest $request) {
-        $data = $request->validated();
-        if(isset($data['category'])) {
-            $data['category_id'] = $data['category'];
-            unset($data['category']);
-        }
-        $this->productManager->createFromWeb($data);
+        $this->productManager->createFromWeb($request->validated());
         return back()->withStatus('The product has been successfully created!');
     }
 
