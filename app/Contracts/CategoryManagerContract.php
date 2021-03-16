@@ -8,4 +8,6 @@ interface CategoryManagerContract {
 
     public function delete($id): void;
 
+    public function getWithSelect(Array $columns);
+
 }

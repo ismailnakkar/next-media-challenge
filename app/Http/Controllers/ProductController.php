@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\CategoryManagerContract;
 use App\Contracts\ProductManagerContract;
 use App\Http\Requests\CreateProductRequest;
 use App\Models\Category;
@@ -10,19 +11,20 @@ use Illuminate\Routing\Controller;
 class ProductController extends Controller
 {
 
-    private $productManager;
+    private $productManager, $categoryManager;
 
-    public function __construct(ProductManagerContract $productManager)
+    public function __construct(ProductManagerContract $productManager, CategoryManagerContract $categoryManager)
     {
         $this->productManager = $productManager;
+        $this->categoryManager = $categoryManager;
     }
 
     public function navigate() {
-        return view('navigate', ['categories' => Category::select('name', 'id')->get()]);
+        return view('navigate', ['categories' => $this->categoryManager->getWithSelect(['name', 'id'])]);
     }
 
     public function create() {
-        return view('create', ['categories' => Category::select('name', 'id')->get()]);
+        return view('create', ['categories' => $this->categoryManager->getWithSelect(['name', 'id'])]);
     }
 
     public function store(CreateProductRequest $request) {

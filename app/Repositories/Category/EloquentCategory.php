@@ -25,7 +25,7 @@ class EloquentCategory implements CategoryRepository {
         return $this->model->findOrFail($id);
     }
 
-    public function getWithSelect(Array ...$columns) {
+    public function getWithSelect(Array $columns) {
         return $this->model->query()->select($columns)->get();
     }
 

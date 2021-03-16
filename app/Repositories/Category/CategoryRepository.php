@@ -11,7 +11,7 @@ interface CategoryRepository {
 
     public function find(int $id);
 
-    public function getWithSelect(Array ...$columns);
+    public function getWithSelect(Array $columns);
 
 }
 
