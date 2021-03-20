@@ -29,4 +29,5 @@ class EloquentProduct implements ProductRepository {
         return $this->model->findOrFail($id);
     }
 
+
 }

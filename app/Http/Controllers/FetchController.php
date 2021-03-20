@@ -29,7 +29,7 @@ class FetchController extends Controller
     public function __invoke(Request $request)
     {
         if($request->query('category')) {
-            return new DataResource($this->category->find($request->query('category')));
+            return new DataResource($this->category->fetch($request->query('category'), $request->query('sortBy'), $request->query('sortingType')));
         } else {
             return ProductResource::collection($this->product->getInOrder($request->query('sortBy'), $request->query('sortingType')));
         }

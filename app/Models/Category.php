@@ -13,9 +13,7 @@ class Category extends Model
 
     protected $guarded = ['id'];
 
-    public function parent_category() {
-        return $this->belongsTo(Category::class, 'parent_category');
-    }
+    protected $hidden = ['parent_category'];
 
     public function products() {
         return $this->belongsToMany(Product::class);
@@ -25,7 +23,4 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_category');
     }
 
-    public function getSortedProducts(String $sortBy, String $sortingType) {
-        return $this->products()->orderBy($sortBy, $sortingType)->get();
-    }
 }

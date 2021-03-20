@@ -13,6 +13,8 @@ interface CategoryRepository {
 
     public function getWithSelect(Array $columns);
 
+    public function fetch($id, $sortBy, $sortingType);
+
 }
 
 

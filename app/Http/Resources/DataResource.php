@@ -17,8 +17,8 @@ class DataResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'products' => ProductResource::collection($this->getSortedProducts($request->query('sortBy'), $request->query('sortingType'))),
-            'categories' => CategoryResource::collection($this->sub_categories)
+            'products' => ProductResource::collection($this->whenLoaded('products')),
+            'categories' => CategoryResource::collection($this->whenLoaded('sub_categories'))
         ];
     }
 }

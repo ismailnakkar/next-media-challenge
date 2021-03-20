@@ -29,4 +29,10 @@ class EloquentCategory implements CategoryRepository {
         return $this->model->query()->select($columns)->get();
     }
 
+    public function fetch($id, $sortBy, $sortingType) {
+        return $this->model->where('id', $id)->with(['sub_categories', 'products' => function($query) use ($sortBy, $sortingType) {
+            $query->select('name', 'price', 'description', 'img_path')->inOrder($sortBy, $sortingType);
+        }])->first();
+    }
+
 }
