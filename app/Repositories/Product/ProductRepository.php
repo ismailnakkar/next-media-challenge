@@ -15,4 +15,6 @@ interface ProductRepository {
 
     public function getInOrder(String $sortBy, String $type): Collection;
 
+    public function delete(int $id): void;
+
 }

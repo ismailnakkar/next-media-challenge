@@ -4,6 +4,7 @@ namespace App\Repositories\Product;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class EloquentProduct implements ProductRepository {
 
@@ -30,6 +31,12 @@ class EloquentProduct implements ProductRepository {
 
     public function find(int $id): Product {
         return $this->model->findOrFail($id);
+    }
+
+    public function delete(int $id): void {
+        $product = $this->find($id);
+        Storage::delete($product->img_path);
+        $product->delete();
     }
 
 
