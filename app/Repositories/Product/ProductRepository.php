@@ -1,20 +1,27 @@
 <?php
 
 namespace App\Repositories\Product;
-use Illuminate\Database\Eloquent\Collection;
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 
-interface ProductRepository {
+interface ProductRepository
+{
 
-    public function create(Array $data): Product;
+    public function create(array $data): Product;
 
     public function find(int $id): Product;
 
-    public function update(int $id, Array $data): bool;
+    public function update(int $id, array $data): bool;
 
-    public function getInOrder(String $sortBy, String $type): Collection;
+    public function getInOrder(string $sortBy, string $type): Collection;
 
     public function delete(int $id): void;
+
+    public function addCategories(int $id, array $categories): void;
+
+    public function beginTransaction(): void;
+
+    public function commitChanges(): void;
 
 }

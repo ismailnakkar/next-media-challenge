@@ -5,7 +5,8 @@ namespace App\Repositories\Category;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 
-class EloquentCategory implements CategoryRepository {
+class EloquentCategory implements CategoryRepository
+{
 
     private $model;
 
@@ -14,7 +15,7 @@ class EloquentCategory implements CategoryRepository {
         $this->model = $model;
     }
 
-    public function create(Array $data): Category
+    public function create(array $data): Category
     {
         return $this->model->create($data);
     }
@@ -29,14 +30,14 @@ class EloquentCategory implements CategoryRepository {
         return $this->model->findOrFail($id);
     }
 
-    public function getWithSelect(Array $columns): Collection
+    public function getWithSelect(array $columns): Collection
     {
         return $this->model->query()->select($columns)->get();
     }
 
-    public function fetch(int $id, String $sortBy, String $sortingType): Category
+    public function fetch(int $id, string $sortBy, string $sortingType): Category
     {
-        return $this->model->where('id', $id)->with(['sub_categories', 'products' => function($query) use ($sortBy, $sortingType) {
+        return $this->model->where('id', $id)->with(['sub_categories', 'products' => function ($query) use ($sortBy, $sortingType) {
             $query->select('name', 'price', 'description', 'img_path')->inOrder($sortBy, $sortingType);
         }])->first();
     }

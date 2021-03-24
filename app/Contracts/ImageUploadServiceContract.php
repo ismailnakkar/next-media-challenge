@@ -4,11 +4,11 @@ namespace App\Contracts;
 
 use App\Services\ImageUploadService;
 
-interface ImageUploadServiceContract {
+interface ImageUploadServiceContract
+{
 
-    public function setPath(String $path): ImageUploadService;
+    public function setPath(string $path): ImageUploadService;
 
-    public function save(int $product_id): String;
-
+    public function save(int $product_id): string;
 
 }

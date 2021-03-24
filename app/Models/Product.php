@@ -18,7 +18,7 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function scopeInOrder($query, String $sortBy, String $sortingType)
+    public function scopeInOrder($query, string $sortBy, string $sortingType)
     {
         return $query->orderBy($sortBy, $sortingType);
     }

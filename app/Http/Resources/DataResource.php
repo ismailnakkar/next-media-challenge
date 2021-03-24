@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DataResource extends JsonResource
@@ -18,7 +17,7 @@ class DataResource extends JsonResource
     {
         return [
             'products' => ProductResource::collection($this->whenLoaded('products')),
-            'categories' => CategoryResource::collection($this->whenLoaded('sub_categories'))
+            'categories' => CategoryResource::collection($this->whenLoaded('sub_categories')),
         ];
     }
 }

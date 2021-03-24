@@ -31,6 +31,7 @@ class ProductController extends Controller
     public function store(CreateProductRequest $request)
     {
         $this->ProductService->create($request->name, $request->description, $request->price, $request->file('image')->path(), $request->categories ?? []);
+
         return back()->withStatus('The product has been successfully created!');
     }
 
