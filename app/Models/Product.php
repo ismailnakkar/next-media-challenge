@@ -13,11 +13,13 @@ class Product extends Model
 
     protected $hidden = ['pivot'];
 
-    public function categories() {
+    public function categories()
+    {
         return $this->belongsToMany(Category::class);
     }
 
-    public function scopeInOrder($query, String $sortBy, String $sortingType) {
+    public function scopeInOrder($query, String $sortBy, String $sortingType)
+    {
         return $query->orderBy($sortBy, $sortingType);
     }
 

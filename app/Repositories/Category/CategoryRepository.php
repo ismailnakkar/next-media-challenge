@@ -2,18 +2,20 @@
 
 namespace App\Repositories\Category;
 
+use App\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 
 interface CategoryRepository {
 
-    public function create(Array $data);
+    public function create(Array $data): Category;
 
-    public function delete(int $id);
+    public function delete(int $id): void;
 
-    public function find(int $id);
+    public function find(int $id): Category;
 
-    public function getWithSelect(Array $columns);
+    public function getWithSelect(Array $columns): Collection;
 
-    public function fetch($id, $sortBy, $sortingType);
+    public function fetch(int $id, String $sortBy, String $sortingType): Category;
 
 }
 

@@ -2,14 +2,16 @@
 
 namespace App\Providers;
 
-use App\Contracts\CategoryManagerContract;
-use App\Contracts\ProductManagerContract;
+use App\Contracts\CategoryServiceContract;
+use App\Contracts\ImageUploadServiceContract;
+use App\Contracts\ProductServiceContract;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\EloquentCategory;
 use App\Repositories\Product\EloquentProduct;
 use App\Repositories\Product\ProductRepository;
-use App\Services\CategoryManager;
-use App\Services\ProductManager;
+use App\Services\CategoryService;
+use App\Services\ImageUploadService;
+use App\Services\ProductService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,8 +25,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(ProductRepository::class, EloquentProduct::class);
         $this->app->singleton(CategoryRepository::class, EloquentCategory::class);
-        $this->app->singleton(ProductManagerContract::class, ProductManager::class);
-        $this->app->singleton(CategoryManagerContract::class, CategoryManager::class);
+        $this->app->singleton(ProductServiceContract::class, ProductService::class);
+        $this->app->singleton(CategoryServiceContract::class, CategoryService::class);
+        $this->app->singleton(ImageUploadServiceContract::class, ImageUploadService::class);
     }
 
     /**

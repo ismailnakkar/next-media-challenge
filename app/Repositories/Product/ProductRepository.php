@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Repositories\Product;
+use Illuminate\Database\Eloquent\Collection;
+
+use App\Models\Product;
 
 interface ProductRepository {
 
-    public function create(Array $data);
+    public function create(Array $data): Product;
 
-    public function find(Array $data);
+    public function find(int $id): Product;
 
-    public function update($id, Array $data);
+    public function update(int $id, Array $data): bool;
 
-    public function getInOrder(String $sortBy, String $type);
+    public function getInOrder(String $sortBy, String $type): Collection;
 
 }
