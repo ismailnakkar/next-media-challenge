@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\ImageUploadServiceContract;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Intervention\Image\ImageManagerStatic as Image;
 use InvalidArgumentException;
 use \Symfony\Component\HttpFoundation\File\File;
@@ -11,6 +11,12 @@ use \Symfony\Component\HttpFoundation\File\File;
 class ImageUploadService implements ImageUploadServiceContract
 {
     private $path;
+    private $storage;
+
+    public function __construct(Filesystem $storage)
+    {
+        $this->storage = $storage;
+    }
 
     public function setPath(string $path): ImageUploadService
     {
@@ -27,7 +33,7 @@ class ImageUploadService implements ImageUploadServiceContract
         }
         $image = Image::make($file)->encode($file->getExtension() !== 'tmp' ? $file->getExtension() : 'png');
         $path = "images/{$product_id}.{$image->extension}";
-        Storage::put($path, $image);
+        $this->storage->put($path, $image);
 
         return $path;
     }
