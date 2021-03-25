@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Contracts\ProductServiceContract;
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\Application;
 
 class DeleteProduct extends Command
 {
@@ -38,7 +38,7 @@ class DeleteProduct extends Command
      *
      * @return int
      */
-    public function handle(ProductServiceContract $productService)
+    public function handle(ProductServiceContract $productService, Application $app)
     {
         try {
             $productService->deleteProduct($this->argument('id'));
@@ -46,7 +46,7 @@ class DeleteProduct extends Command
 
             return 0;
         } catch (Exception $e) {
-            if (App::environment() === 'local') {
+            if ($app->environment() === 'local') {
                 $this->error($e->getMessage());
             } else {
                 $this->error('Something went wrong! Please check your arguments.');

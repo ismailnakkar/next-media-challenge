@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Contracts\CategoryServiceContract;
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\Application;
 
 class DeleteCategory extends Command
 {
@@ -38,7 +38,7 @@ class DeleteCategory extends Command
      *
      * @return int
      */
-    public function handle(CategoryServiceContract $categoryService)
+    public function handle(CategoryServiceContract $categoryService, Application $app)
     {
         try {
             $categoryService->delete($this->argument('id'));
@@ -46,7 +46,7 @@ class DeleteCategory extends Command
 
             return 0;
         } catch (Exception $e) {
-            if (App::environment() === 'local') {
+            if ($app->environment() === 'local') {
                 $this->error($e->getMessage());
             } else {
                 $this->error('Something went wrong! Please check your arguments.');
