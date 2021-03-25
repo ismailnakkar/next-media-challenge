@@ -19,7 +19,7 @@ class ProductService implements ProductServiceContract
         $this->imageService = $imageService;
     }
 
-    public function create(string $name, string $description, float $price, string $img_path, array $categories): int
+    public function create(string $name, string $description, float $price, string $img_path, array $categories = []): int
     {
         $this->product->beginTransaction();
         $product = $this->product->create(['name' => $name, 'description' => $description, 'price' => $price]);
