@@ -14,7 +14,7 @@ class CreateProduct extends Command
      *
      * @var string
      */
-    protected $signature = 'create:product {name : the name of the product} {description} {price} {img_path : The path should be relative to the root directory of this app} {--categories=}';
+    protected $signature = 'create:product {name : the name of the product} {description} {price} {img_path : The path should be relative to the root directory of this app} {--categories= : (optional) should be separated by commas}';
 
     /**
      * The console command description.
